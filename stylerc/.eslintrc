@@ -1,0 +1,36 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "extends": [
+    	"airbnb-base",
+    	"prettier",
+  	],
+    "rules": {
+	  		"brace-style": 0,
+		    "comma-dangle": 2,
+		    "consistent-return": [0],
+		    "curly": [0],
+		    "eol-last": [0],
+		    "indent": ["error", 4, { "SwitchCase": 4 }],
+		    "import/extensions": 1,
+		    "jsx-quotes": 1,
+		    "new-cap": [0],
+		    "no-class-assign": 0,
+		    "no-mixed-requires": [0],
+		    "no-var": 2,
+		    "no-underscore-dangle": [0],
+		    "no-unused-expressions": [2],
+		    "object-curly-spacing": [0],
+		    "one-var": 0,
+		    "one-var-declaration-per-line": 0,
+		    "prefer-const": 2,
+		    "quotes": [2, "single"],
+		    "semi": [2, "never"],
+		    "radix": [0],
+		    "template-curly-spacing": 0
+    },
+    "plugins": ["prettier"]
+}
