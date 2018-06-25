@@ -2,27 +2,17 @@ call plug#begin('~/.vim/plugged')
 " let Vundle manage Vundle
 Plug 'gmarik/Vundle.vim'
 Plug 'mattn/emmet-vim'
-" Plug 'vim-scripts/jslint.vim'
-" Plug 'cakebaker/scss-syntax.vim'
+Plug 'cakebaker/scss-syntax.vim'
 Plug 'evanmiller/nginx-vim-syntax'
-" Plug 'tir_black'
-"Plug 'othree/html5.vim'
-" Plug 'AutoComplPop'
-" for vim-autocomplpop
+Plug 'othree/html5.vim'
 " Plug 'L9'
 " Plug 'othree/vim-autocomplpop'
 " Plug 'Shougo/deoplete.nvim'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'MarcWeber/vim-addon-local-vimrc'
-Plug 'tomtom/tlib_vim'
-
-
 Plug 'nono/vim-handlebars'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
-" Plug 'kchmck/vim-coffee-script'
-" Plug 'othree/vim-coffee-script'
-" Plug 'othree/coffee-check.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
@@ -31,92 +21,58 @@ Plug 'powerline/powerline'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/ctrlp.vim'
+Plug 'rking/ag.vim'
 Plug 'terryma/vim-expand-region'
 Plug 't9md/vim-smalls'
-Plug 'easymotion/vim-easymotion'
-" Plug 'mtscout6/vim-cjsx'
+Plug 'easymotion/vim-easymotion' "快速選取
 Plug 'junegunn/vim-easy-align'
-Plug 'pangloss/vim-javascript'
-"Plug 'mxw/vim-jsx'
-Plug 'dyng/ctrlsf.vim'
+Plug 'othree/yajs'
+Plug 'mxw/vim-jsx'
+"Plug 'dyng/ctrlsf.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'othree/csscomplete.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'wincent/ferret'
-Plug 'othree/yajs.vim'
-Plug 'joshdick/onedark.vim'
-Plug 'sheerun/vim-polyglot'
 Plug 'ap/vim-css-color'
-Plug 'posva/vim-vue'
-Plug 'myusuf3/numbers.vim'
 Plug 'valloric/youcompleteme'
-Plug 'honza/vim-snippets'
-" Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-
+Plug 'joshdick/onedark.vim'
+Plug 'terryma/vim-smooth-scroll'
+Plug 'myusuf3/numbers.vim'
+Plug 'sheerun/vim-polyglot'
 " Add plugins to &runtimepath
-"
-call plug#end()
 
+call plug#end()
 set t_Co=256
 set bs=2
+" vim auto indent
 set cindent
 set history=50
 set modeline
 set modelines=2
 set nowrap
 set number
-"set runtimepath=~/.vim,$VIMRUNTIME
 set title
 set wildmenu
-
-" Highlight search keywords.
 set hlsearch
 set incsearch
-
 " Replace tab with 4 spaces.
 set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-" Auto-complete using Ctrl+K.
-" set dictionary-=~/.vim/funclist.txt
-" set complete-=k complete+=k
-
-" Syntax highlight.
-syntax on
-hi Visual term=reverse cterm=reverse ctermbg=red
-hi Comment term=standout cterm=bold ctermfg=0
-highlight Search term=reverse ctermbg=3 ctermfg=0
-highlight Normal ctermbg=black ctermfg=white
-highlight Folded ctermbg=black ctermfg=darkcyan
-hi Cursor ctermbg=Gray ctermfg=Blue
-highlight clear SpellBad
-highlight SpellBad term=underline cterm=underline ctermfg=red
-
-" Set status line.
-set ls=2
-set statusline=%<%f\ %m%=\ %h%r\ %-19([%p%%]\ %3l,%02c%03V%)%y
-highlight StatusLine term=bold,reverse cterm=bold,reverse
-
 " Set cursor line.
 set cursorline
 set cursorcolumn
-hi CursorLine cterm=NONE ctermbg=Red ctermfg=Red guibg=#253144 guifg=#591234
 
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929"
-hi CursorColumn cterm=NONE ctermbg=darkred ctermbg=darkgray guibg=darkcyan
-" match OverLength /\%81v.\+/
+" vim mouse control ...you..know...
+set mouse=a
+" Auto-complete using Ctrl+K.
+" set dictionary-=~/.vim/funclist.txt
+" set complete-=k complete+=k
 
 " Always use utf-8 encoding.
 set fileencoding=utf-8
 set fileencodings=utf-8,big5,euc-jp,gbk,euc-kr,utf-bom,iso8859-1
 "set encoding=utf-8
 set tenc=utf-8
-
-" Set tab settings.
-highlight TabLine ctermbg=blue
-highlight TabLineFill ctermbg=green
-highlight TabLineSel ctermbg=red
 
 " cliboard config
 set cb=unnamed,unnamedplus
@@ -148,8 +104,8 @@ let g:nerdtree_tabs_focus_on_files = 1
 
 let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
-" let g:airline_theme='luna'
-" let g:AirlineTheme='wombat'
+let g:airline_theme='luna'
+"let g:AirlineTheme='wombat'
 
 set laststatus=2 " Always display the statusline in all windows
 set showtabline=2 " Always display the tabline, even if there is only one tab
@@ -190,7 +146,11 @@ au BufRead,BufNewFile /etc/nginx/* set ft=nginx
 au BufNewFile,BufRead *.gradle setf groovy
 " au BufRead,BufNewFile *.coffee set ft=coffee
 
-
+" scroll
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 " tab to indent
 nmap <tab> V>
@@ -207,16 +167,6 @@ function! WriteCreatingDirs()
 endfunction
 command! W call WriteCreatingDirs()
 
-"https://github.com/othree/javascript-libraries-syntax.vim
-"let g:used_javascript_libs = 'underscore,backbone,jquery,angularjs,requirejs'
-"let g:syntastic_html_checkers = []
-"autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
-"autocmd BufReadPre *.js let b:javascript_lib_use_underscore = 1
-"autocmd BufReadPre *.js let b:javascript_lib_use_backbone = 1
-"autocmd BufReadPre *.js let b:javascript_lib_use_prelude = 0
-"autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
-"
-"
 " Autocomplpop: {{{
 "" acp options
 " let g:acp_enableAtStartup = 1
@@ -239,7 +189,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_javascript_checkers = ['jslint']
 let g:syntastic_javascript_jslint_conf = "--nomen --plusplus --forin --regexp"
 "let g:syntastic_coffee_coffeelint_args = "--csv -f ~/.coffeelint-config.json"
-let g:syntastic_ignore_files = ['\.coffee$', '\.html$', '\.hbs$']
 " }}}
 
 nmap <F3>  :set nopaste!<CR>
@@ -306,33 +255,23 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
 " ctrlp: {{{
 "
-
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
-let g:ctrlp_show_hidden = 0
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_working_path_mode = ''
 let g:ctrlp_use_caching = 0
+let g:ctrlp_max_files = 0
+let g:ctrlp_max_depth = 40
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,cacahe,*.min.*,node_modules     " MacOSX/Linux
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|cache'
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-" let g:ctrlp_custom_ignore = {
-" \ 'dir':  'node_modules$\|\.git$\|\.meteor$\|\.svn$\|dist$\|\.hg$',
-" \ 'file': '\.DS_Store$\|\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.svg$'
-" \ }
-" }}}
-"" set theme
-" Note: All options should be set before the colorscheme onedark line in your ~/.vimrc.
-colorscheme onedark
-let g:onedark_terminal_italics = 1
-highlight Comment cterm=italic
-
-let g:cssColorVimDoNotMessMyUpdatetime = 1
-
-" change completePop color
-hi Pmenu ctermfg=white ctermbg=242 guifg=#ffffff guibg=#6c6c6c
-hi PmenuSel ctermfg=white ctermbg=32 guifg=#ffffff guibg=#0087d7
+ let g:ctrlp_custom_ignore = {
+ \ 'dir':  'node_modules$\|\.git$\|\.meteor$\|\.svn$\|dist$\|\.hg$',
+ \ 'file': '\.DS_Store$\|\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.svg$'
+ \ }
 
 " ale
 let g:ale_linters = {
@@ -340,3 +279,14 @@ let g:ale_linters = {
 \}
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+"" set theme
+syntax enable
+syntax on
+
+set background=dark
+" Note: All options should be set before the colorscheme onedark line in your ~/.vimrc.
+let g:onedark_terminal_italics = 1
+colorscheme onedark
+
+
