@@ -61,10 +61,11 @@ ZSH_THEME="xxf"
 plugins=(
   git, z, zsh-autosuggestions, zsh-syntax-highlighting
 )
-
 source $ZSH/oh-my-zsh.sh
 source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=white'
+export TERM=xterm-256color
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -119,4 +120,12 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=white'
  export LS_COLORS=''
  alias ls="ls -A --color=auto"
  alias find="grep -r -n"
+ alias ag='ag --path-to-ignore $HOME/.gitignore'
 
+ # FZF settings
+export FZF_DEFAULT_COMMAND='ag -g ""'
+#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+#export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+bindkey -s '^t' 'vim $(fzf --height 40%)\n'

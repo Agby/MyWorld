@@ -20,7 +20,9 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'powerline/powerline'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+"Plug 'kien/ctrlp.vim'
 Plug 'rking/ag.vim'
 Plug 'terryma/vim-expand-region'
 Plug 't9md/vim-smalls'
@@ -239,6 +241,7 @@ vmap <Leader> k(EasyAlign)
 
 
 "CtrlSF https://github.com/dyng/ctrlsf.vim
+map      <C-A> ggVG "select all
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
 vmap     <C-F>F <Plug>CtrlSFVwordExec
@@ -255,23 +258,23 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
 " ctrlp: {{{
 "
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_working_path_mode = ''
-let g:ctrlp_use_caching = 0
-let g:ctrlp_max_files = 0
-let g:ctrlp_max_depth = 40
-
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,cacahe,*.min.*,node_modules     " MacOSX/Linux
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|cache'
-
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
- let g:ctrlp_custom_ignore = {
- \ 'dir':  'node_modules$\|\.git$\|\.meteor$\|\.svn$\|dist$\|\.hg$',
- \ 'file': '\.DS_Store$\|\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.svg$'
- \ }
+"let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_cmd = 'CtrlP'
+"
+"let g:ctrlp_show_hidden = 1
+"let g:ctrlp_working_path_mode = ''
+"let g:ctrlp_use_caching = 0
+"let g:ctrlp_max_files = 0
+"let g:ctrlp_max_depth = 40
+"
+"set wildignore+=*/tmp/*,*.so,*.swp,*.zip,cacahe,*.min.*,node_modules     " MacOSX/Linux
+"let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|cache'
+"
+"set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+" let g:ctrlp_custom_ignore = {
+" \ 'dir':  'node_modules$\|\.git$\|\.meteor$\|\.svn$\|dist$\|\.hg$',
+" \ 'file': '\.DS_Store$\|\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.svg$'
+" \ }
 
 " ale
 let g:ale_linters = {
@@ -289,4 +292,20 @@ set background=dark
 let g:onedark_terminal_italics = 1
 colorscheme onedark
 
+" fzf settings
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let g:fzf_colors =
+            \ { 'fg':      ['fg', 'Normal'],
+            \ 'bg':      ['bg', 'Normal'],
+            \ 'hl':      ['fg', 'Type'],
+            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+            \ 'hl+':     ['fg', 'Identifier'],
+            \ 'info':    ['fg', 'PreProc'],
+            \ 'prompt':  ['fg', 'Conditional'],
+            \ 'pointer': ['fg', 'Exception'],
+            \ 'marker':  ['fg', 'Keyword'],
+            \ 'spinner': ['fg', 'Label'],
+            \ 'header':  ['fg', 'Comment'] }
+nnoremap <silent> <C-t> :Files<CR>
 
